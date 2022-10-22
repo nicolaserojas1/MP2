@@ -1,3 +1,5 @@
+from imp import C_BUILTIN
+from termios import VEOL
 import parametros as p
 import random
 
@@ -45,36 +47,52 @@ def seleccionar(vehiculos):
 class Automovil:
     def __init__(self, a, kilometraje,velocidad):
         self.ano = a
-        self.rueda = []
+        self.rueda = list()
         self.aceleracion = 0
         self.velocidad = 0
-        self.__kilometros = kilometraje
+        self.__kilometraje = kilometraje
 
-    def avanzar(self, tiempo):
-        tiempo = int(input("tiempo en seg"))
-        self.kilometraje += velocidad*tiempo
+    def avanzar(self, tiempo:int):
+        self.tiempo = int(input("tiempo en seg"))
+        self.__kilometraje = self.velocidad*self.tiempo
+        
+    def acelerar(self, tiempo):
+        #Recibe como argumento un int que corresponde al tiempo 
+        #expresado en segundos. Primero agrega tiempo*0.5 al 
+        #atributo aceleración. 
+        self.aceleracion = self.tiempo*0.5 
+        self.velocidad += self.aceleracion * self.tiempo * 3,6
+        self.avanzar(tiempo)
+        self.aceleracion = 0
+
+    def frenar(self, tiempo:int):
+        self.aceleracion -= self.tiempo * 0,5
+        self.velocidad -= self.aceleracion * self.tiempo * 3,6
+        if self.velocidad < 0:
+            self.velocidad = 0
+        else:
+            pass
+        self.avanzar(tiempo)
+        aceleracin = 0
+
+
+    def  obtener_kilometraje(self):
+        return
+        self.kilometraje
         
 
-    def aceleracion(self):
-        tiempo_aceleracion = int(input("tiempo aceleracion en segundos"))
-        avanzar()
-
-    def frenar(self):
+    def  reemplazar_rueda(self):
         pass
+            
 
-    def  obtener_kilometraje():
+class Moto(Automovil): 
+    def __init__(self,a, kilometraje, velocidad):
+        super().__init__(a, kilometraje,velocidad)
+        # Completar
         pass
-
-    def  reemplazar_rueda():
-        pass
-    
-
-class Moto: 
-
-    # Completar
-    pass
 
     def __str__(self):
+        self.cilindrada = cilindrada
         return f"Moto del año {self.ano}."
 
 
