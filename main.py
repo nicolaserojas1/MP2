@@ -61,7 +61,7 @@ class Automovil:
         self.avanzar(tiempo)
         self.aceleracion = 0
 
-    def frenar(self, tiempo:int):
+    def frenar(self, tiempo):
         self.aceleracion -= tiempo * 0.5
         self.velocidad -= self.aceleracion * tiempo * 3.6
         if self.velocidad < 0:
@@ -87,9 +87,6 @@ class Moto(Rueda, Automovil):
         self.cilindrada = cilindrada
         self.rueda = [""]
     
-    def acelerar(self, tiempo):
-        self.acelerar(tiempo)
-        Rueda.gastar("acelerar")
 
     def __str__(self):
         return f"Moto del año {self.ano}."
@@ -112,16 +109,16 @@ def accion(vehiculo, opcion):
     if opcion == 2:  # Acelerar
         tiempo =int(input("ingresa el tiempo de aceleracion"))
         vehiculo.acelerar(tiempo)
-        print(f"se a acelerado por {tiempo} seg llegando a una velocidad de {vehiculo.velocidad}")
+        print(f"se a acelerado por {tiempo} seg llegando a una velocidad de {vehiculo.velocidad} km/h")
 
     elif opcion == 3:  # Frenar
         tiempo = int(input("Escoja el tiempo de frenado\n:"))
-        vehiculo.acelerar(tiempo)
+        vehiculo.frenar(tiempo)
         print(f"Se ha frenado por {tiempo} segundos, llegando a una velocidad de {vehiculo.velocidad} km/h")
     elif opcion == 4:  # Avanzar
         tiempo = int(input("Escoja el tiempo a avanzar\n:"))
         vehiculo.avanzar(tiempo)
-        print(f"Se ha avanzado por {tiempo} segundos a una velocidad de {vehiculo.velocidad}km/h")
+        print(f"Se ha avanzado por {tiempo} segundos a una velocidad de {vehiculo.velocidad} km/h")
 
     elif opcion == 5:  # Cambiar rueda
         vehiculo.reemplazar_rueda()
