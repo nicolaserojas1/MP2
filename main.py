@@ -1,8 +1,5 @@
-from imp import C_BUILTIN
-from termios import VEOL
 import parametros as p
 import random
-
 
 # NO MODIFICAR
 class Rueda:
@@ -77,28 +74,48 @@ class Automovil:
 
 
     def  obtener_kilometraje(self):
-        return
-        self.kilometraje
+        return self.__kilometraje
         
 
     def  reemplazar_rueda(self):
-        pass
+        minimo = float("inf")
             
 
-class Moto(Automovil): 
-    def __init__(self,a, kilometraje, velocidad):
+class Moto(Rueda, Automovil): 
+    def __init__(self,a, kilometraje, velocidad, cilindrada):
         super().__init__(a, kilometraje,velocidad)
-        # Completar
-        pass
+        self.cilindrada = cilindrada
+        
+    def acelerar(self):
+        self.tiempo = int(input("Tiempo en Seg"))
+        self.aceleracion()
+        self.gastar()
+    
+    def frenar(self):
+        self.tiempo = int(input("Tiempo en segundos\n:"))
+        self.frenar()
+        for frenado in self.rueda:
+            frenado = self.gastar("frenar")
 
     def __str__(self):
         self.cilindrada = cilindrada
         return f"Moto del año {self.ano}."
 
 
-class Camion:
-    # Completar
-    pass
+class Camion(Rueda, Automovil):
+    def __init__(self, a, kilometraje, velocidad, carga):
+        super().__init__(a, kilometraje,velocidad)
+        self.carga = carga
+
+    def acelerar(self, tiempo):
+        super().acelerar(tiempo)
+        super().gastar("acelerar")
+
+    def frenar(self, tiempo):
+        super().frenar(tiempo)
+        super().gastar("frenar")
+
+
 
     def __str__(self):
         return f"Camión del año {self.ano}."
@@ -109,15 +126,24 @@ class Camion:
 def accion(vehiculo, opcion):
     # Completar
     if opcion == 2:  # Acelerar
-        pass
+        tiempo = int(input("ingresa el tiempo de aceleracion"))
+        Automovil.acelerar(tiempo)
+        print(f"se a acelerado por {tiempo} seg llegando a una velocidad de {Automovil.velocidad}")
+
     elif opcion == 3:  # Frenar
-        pass
+        tiempo = int(input("Escoja el tiempo de frenado\n:"))
+        Automovil.acelerar(tiempo)
+        print(f"Se ha frenado por {tiempo} segundos, llegando a una velocidad de {Automovil.velocidad} km/h")
     elif opcion == 4:  # Avanzar
-        pass
+        tiempo = int(input("Escoja el tiempo a avanzar\n:"))
+        Automovil.avanzar(tiempo)
+        print(f"Se ha avanzado por {tiempo} segundos a una velocidad de {Automovil.velocidad}km/h")
+
     elif opcion == 5:  # Cambiar rueda
-        pass
+        Automovil.reemplazar_rueda()
+        print("Se ha reemplazado una rueda con éxito")
     elif opcion == 6:  # Mostrar Estado
-        pass
+        print({self.ano},{self.velocidad},{self.__kilometraje} )
 
 
 def main():
