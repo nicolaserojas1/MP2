@@ -85,7 +85,7 @@ class Moto(Rueda, Automovil):
         Rueda.__init__(self)
         Automovil.__init__(self,a, kilometraje, velocidad)
         self.cilindrada = cilindrada
-        self.rueda = [""]
+        self.rueda = ["rueda1", "rueda2"]
     
 
     def __str__(self):
@@ -97,6 +97,7 @@ class Camion(Rueda, Automovil):
         Rueda.__init__(self)
         Automovil.__init__(self, a, kilometraje, velocidad)
         self.carga = carga
+        self.rueda = ["rueda1", "rueda2","rueda3","rueda4","rueda5","rueda6"]
 
     def __str__(self):
         return f"Camión del año {self.ano}."
@@ -124,7 +125,7 @@ def accion(vehiculo, opcion):
         vehiculo.reemplazar_rueda()
         print("Se ha reemplazado una rueda con éxito")
     elif opcion == 6:  # Mostrar Estado
-        pass
+        print(vehiculo.ano, vehiculo.velocidad, vehiculo.obtener_kilometraje())
 
 def main():
     camion1 = Camion( "2010", 0, 0, 300)
